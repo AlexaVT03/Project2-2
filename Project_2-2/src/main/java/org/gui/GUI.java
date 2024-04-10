@@ -4,13 +4,13 @@ import javax.swing.*;
 
 public class GUI {
     private JFrame frame;
-    private JTextField userInput;
     private JLabel label1, label2;
     private JTextField day, month, year;
+    private JButton compute;
 
     public GUI() {
         frame = new JFrame("Weather Predictor");
-        frame.setSize(450, 200);
+        frame.setSize(450, 250);
         frame.setLayout(null);
 
         label1 = new JLabel("Please input the date for which you would like to predict the weather:");
@@ -37,6 +37,11 @@ public class GUI {
         year.setSize(100, 30);
         year.setLocation(230, 100);
         frame.add(year);
+
+        compute = new JButton("Predict!");
+        compute.setSize(100, 30);
+        compute.setLocation(170, 150);
+        frame.add(compute);
 
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
