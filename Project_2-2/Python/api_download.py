@@ -7,7 +7,7 @@ end_year = 2001
 
 year = start_year
 while(year < end_year):
-    for month in range(1,12):
+    for month in range(1,13):
         print('year: ', year, ', month: ', month)
         c.retrieve(
             'insitu-observations-surface-land',
