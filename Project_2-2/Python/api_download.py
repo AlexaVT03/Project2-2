@@ -12,7 +12,7 @@ while(year < end_year):
             'insitu-observations-surface-land',
             {
                 'format': 'zip',
-                'time_aggregation': 'monthy',
+                'time_aggregation': 'daily',
                 'variable': [
                     'accumulated_precipitation', 'air_temperature', 'fresh_snow',
                     'snow_depth', 'snow_water_equivalent', 'wind_from_direction',
