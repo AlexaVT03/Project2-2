@@ -2,8 +2,9 @@ import cdsapi
 
 c = cdsapi.Client()
 
-start_year = 1900
-end_year = 2020
+start_year = 2000
+end_year = 2001
+
 year = start_year
 while(year < end_year):
     for month in range(1,12):
@@ -15,15 +16,10 @@ while(year < end_year):
                 'time_aggregation': 'daily',
                 'variable': [
                     'accumulated_precipitation', 'air_temperature', 'fresh_snow',
-                    'snow_depth', 'snow_water_equivalent', 'wind_from_direction',
-                    'wind_speed',
+                    'snow_depth', 'snow_water_equivalent', 'wind_speed',
                 ],
-                'usage_restrictions': [
-                    'restricted', 'unrestricted',
-                ],
-                'data_quality': [
-                    'failed', 'passed',
-                ],
+                'usage_restrictions': 'unrestricted',
+                'data_quality': 'failed',
                 'year': f'{year}',
                 'month': f'{month}',
                 'day': [
@@ -38,6 +34,10 @@ while(year < end_year):
                     '25', '26', '27',
                     '28', '29', '30',
                     '31',
+                ],
+                'area': [
+                    53.9, 2.5, 49.5,
+                    7.2, # north, west, south, east
                 ],
             },
             f'{year}_{month}.zip')
