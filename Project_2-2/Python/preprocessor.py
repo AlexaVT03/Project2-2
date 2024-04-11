@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-directory = 'YOUR PATH/Project_2-2/Data/'  # CHANGE TO OWN PATH
+directory = '/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/Data copy'  # CHANGE TO OWN PATH
 
 daily_df_list = [] # keeps daily df
 
@@ -57,11 +57,14 @@ for year_dir in os.listdir(directory):  # looks in year dir
                 monthly_df = pd.concat(daily_df_list)
                 monthly_df_list.append(monthly_df)
 
-        # DEBUG
-        print(len(monthly_df_list))
-
         # concat monthly DF -> yearly DF
         yearly_df = pd.concat(monthly_df_list)
+
+        # sort by date
+        yearly_df['date_time'] = pd.to_datetime(yearly_df['date_time'])
+
+        # sort df by date of observation
+        yearly_df.sort_values(by='date_time', inplace=True)
 
         # save yearly DF
         yearly_filename = os.path.join(year_dir_path, f"{year_dir}_yearly.csv")
