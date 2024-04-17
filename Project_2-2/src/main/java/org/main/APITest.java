@@ -12,7 +12,7 @@ public class APITest {
     public static void main(String[] args) {
         ProcessBuilder processBuilder = new ProcessBuilder("python", "Project_2-2/Python/connection_test.py");
         try {
-            Process process = processBuilder.start();
+            processBuilder.start();
             // Wait briefly for the server to start up
             try {
                 Thread.sleep(2500);
@@ -56,7 +56,7 @@ public class APITest {
             finalResponse = response.body();
             
         } catch (IOException | InterruptedException e) {
-            if(adress.equalsIgnoreCase("shutdown") && requestType.equalsIgnoreCase("POST") ){ // Added to handle the server shuttign down, as it doesn't return a response
+            if(adress.equalsIgnoreCase("shutdown") && requestType.equalsIgnoreCase("POST") ){ // Added to handle the server shutting down, as it doesn't return a response
                 return "Server is shut down";
             }else{
                 e.printStackTrace();
