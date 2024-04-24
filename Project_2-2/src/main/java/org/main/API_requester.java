@@ -6,9 +6,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class APITest {
+public class API_requester {
     public static void main(String[] args) {
-        ProcessBuilder processBuilder = new ProcessBuilder("python", "Project_2-2/Python/connection_test.py");
+        ProcessBuilder processBuilder = new ProcessBuilder("python", "Project_2-2/Python/API_client.py");
         try {
             processBuilder.start();
             // Wait briefly for the server to start up
