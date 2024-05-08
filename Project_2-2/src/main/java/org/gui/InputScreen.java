@@ -3,6 +3,8 @@ package org.gui;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import org.main.API_requester;
+import java.util.HashMap;
 
 public class InputScreen implements ActionListener {
     private JFrame frame;
@@ -52,7 +54,18 @@ public class InputScreen implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        int day = Integer.parseInt(this.day.getText());
+        int month = Integer.parseInt(this.month.getText());
+        int year = Integer.parseInt(this.year.getText());
+        String date = year + "-" + month + "-" + day;
+        int latitude = 20;
+        int longitude = 20;
+        HashMap<String, String> params = new HashMap<>();
+        params.put("date", date);
+        params.put("latitude", String.valueOf(latitude));
+        params.put("longitude", String.valueOf(longitude));
+        String answer = API_requester.sendRequestToAPI("predict_temp", "GET", params);
         frame.dispose();
-        OutputScreen outputScreen = new OutputScreen();
+        OutputScreen outputScreen = new OutputScreen(answer);
     }
 }

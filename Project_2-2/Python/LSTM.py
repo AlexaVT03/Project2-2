@@ -7,8 +7,8 @@ from keras.layers import Dense
 from keras.layers import LSTM
 import matplotlib.pyplot as plt
 
-nl_df = pd.read_csv('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/test_nl/processed_data.csv')
-
+#nl_df = pd.read_csv('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/test_nl/processed_data.csv')
+nl_df = pd.read_csv('test_nl/processed_data.csv')
 ams_df = nl_df[(nl_df['latitude'] == 52.25) & (nl_df['longitude'] == 5.)]
 
 ams_df = ams_df.sort_values(by = ['time'])
@@ -68,7 +68,3 @@ plt.xlabel('Time')
 plt.ylabel('Value')
 plt.legend()
 plt.show()
-
-# TODO: implement this function
-def predict_temp(latitude, longitude, date):
-    return 1

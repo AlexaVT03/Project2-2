@@ -1,7 +1,7 @@
 import atexit
 import os
 from flask import Flask, request, jsonify
-from LSTM import predict_temp
+from dummy_model import predict_temp
 
 app = Flask(__name__)
 
@@ -13,9 +13,8 @@ def shutdown_server():
 def greet():
     return jsonify({"message": "Hello from Python!"})
 
-
 @app.route('/predict_temp', methods=['GET'])
-def greet():
+def predict_temperature():  # Changed function name here
     # Retrieve parameters from the query string
     latitude = request.args.get('latitude')
     longitude = request.args.get('longitude')

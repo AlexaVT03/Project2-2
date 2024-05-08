@@ -27,8 +27,13 @@ public class API_requester {
                 "longitude", "-118.25",
                 "date", "2023-05-05"
             );
-            System.out.println("Prediction response:\n" + sendRequestToAPI("predict_temp", "GET", params));
-            System.out.println("Shutdown response:\n" + sendRequestToAPI("shutdown", "POST", null));
+            System.out.println("Sending prediction request...");
+            String predictionResponse = sendRequestToAPI("predict_temp", "GET", params);
+            System.out.println("Prediction response:\n" + predictionResponse);
+
+            System.out.println("Sending shutdown request...");
+            String shutdownResponse = sendRequestToAPI("shutdown", "POST", null);
+            System.out.println("Shutdown response:\n" + shutdownResponse);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -109,6 +114,22 @@ public class API_requester {
         }
     }
     return finalResponse;
+    }
+
+    public static void startAPI() {
+        ProcessBuilder processBuilder = new ProcessBuilder("python", "Project_2-2/Python/API_client.py");
+        try {
+            processBuilder.start();
+            // Wait briefly for the server to start up
+            try {
+                Thread.sleep(2500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
