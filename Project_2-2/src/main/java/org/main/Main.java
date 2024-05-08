@@ -6,7 +6,7 @@ import org.main.API_requester;
 
 public class Main {
     public static void main(String[] args) {
-        API_requester.startAPI();
+        API_requester.startAPI(); // Start the API server
         InputScreen inputScreen = new InputScreen();
         System.out.println("Hello world!");
     }
