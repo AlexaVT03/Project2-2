@@ -9,6 +9,9 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
+/**
+ * The API_requester class is responsible for sending requests to an API endpoint and handling the responses.
+ */
 public class API_requester {
     public static void main(String[] args) {
         ProcessBuilder processBuilder = new ProcessBuilder("python", "Project_2-2/Python/API_client.py");
@@ -40,42 +43,14 @@ public class API_requester {
         }
     }
 
-
-
-    // public static String sendRequestToAPI(String adress, String requestType) {
-    //     String finalResponse = "";
-    //     try {
-    //         // Set up the request
-    //         HttpClient client = HttpClient.newHttpClient();
-    //         String URL = "http://localhost:5100/" + adress;
-    //         HttpRequest.Builder requestBuilder = HttpRequest.newBuilder().uri(URI.create(URL));
-
-    //         // Check the request type
-    //         if (requestType.equalsIgnoreCase("POST")) {
-    //             requestBuilder = requestBuilder.POST(HttpRequest.BodyPublishers.noBody());
-    //         } else if (requestType.equalsIgnoreCase("GET")) {
-    //             requestBuilder = requestBuilder.GET();
-    //         } else {
-    //             return "Invalid request type";
-    //         }
-
-    //         // Send HTTP request to the Flask API
-    //         HttpRequest request = requestBuilder.build();
-    //         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-    //         System.out.println("Response status code: " + response.statusCode());
-    //         finalResponse = response.body();
-            
-    //     } catch (IOException | InterruptedException e) {
-    //         if(adress.equalsIgnoreCase("shutdown") && requestType.equalsIgnoreCase("POST") ){ // Added to handle the server shutting down, as it doesn't return a response
-    //             return "Server is shut down";
-    //         }else{
-    //             e.printStackTrace();
-    //         }
-    //     }
-    //     return finalResponse;
-    // }
-
-
+    /**
+     * Sends a request to an API endpoint.
+     *
+     * @param address     the address of the API endpoint
+     * @param requestType the type of the request (POST or GET)
+     * @param queryParams the query parameters to include in the request
+     * @return the response from the API endpoint
+     */
     public static String sendRequestToAPI(String address, String requestType, Map<String, String> queryParams) {
     String finalResponse = "";
     try {
@@ -116,6 +91,10 @@ public class API_requester {
     return finalResponse;
     }
 
+    /**
+     * Starts the API by executing a Python script.
+     * This method creates a process builder to run the Python script and waits briefly for the server to start up.
+     */
     public static void startAPI() {
         ProcessBuilder processBuilder = new ProcessBuilder("python", "Project_2-2/Python/API_client.py");
         try {
