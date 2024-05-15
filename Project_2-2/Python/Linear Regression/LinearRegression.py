@@ -6,7 +6,7 @@ from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
 
 # Load the data
-nl_df = pd.read_csv('/Users/Alexa VT/Documents/GitHub/Project2-2/Project_2-2/test_nl/processed_data.csv')
+nl_df = pd.read_csv('/Users/jesselemeer/Documents/GitHub/Project2-2/Project_2-2/NL_data/train_set/processed_data.csv')
 
 # Filter data for Amsterdam
 ams_df = nl_df[(nl_df['latitude'] == 52.25) & (nl_df['longitude'] == 5.)]
@@ -17,8 +17,12 @@ ams_df = ams_df.sort_values(by='time').set_index('time')
 # Drop unnecessary columns
 ams_df = ams_df.drop(['latitude', 'longitude', 'surface', 'step', 'number', 'valid_time'], axis=1)
 
+# this just moves temp to the right of the DF, easier for X / y split
+ams_df['temp'] = ams_df['t2m']
+ams_df = ams_df.drop(['t2m'], axis = 1)
+
 # Rename 't2m' column to 'temp'
-ams_df.rename(columns={'t2m': 'temp'}, inplace=True)
+# ams_df.rename(columns={'t2m': 'temp'}, inplace=True)
 
 # Train-test split
 train_split = round(len(ams_df) * 0.8)
@@ -44,6 +48,7 @@ n_past = 30
 X_train, Y_train = createXY(ams_df_train_scaled, n_past)
 X_test, Y_test = createXY(ams_df_test_scaled, n_past)
 
+
 # Reshape the data for linear regression
 X_train_linear = X_train.reshape(X_train.shape[0], -1)
 X_test_linear = X_test.reshape(X_test.shape[0], -1)
@@ -64,7 +69,7 @@ predictions_linear = linear_model.predict(X_test_linear)
 print("Predictions:", predictions_linear[:20])
 
 # Print trained model coefficients
-print("Model Coefficients:", linear_model.coef_)
+# print("Model Coefficients:", linear_model.coef_)
 
 # Print scaled test data
 print("Scaled Test Data:", X_test_linear[:10])
