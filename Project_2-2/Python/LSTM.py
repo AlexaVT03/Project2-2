@@ -15,7 +15,7 @@ ams_df = ams_df.sort_values(by = ['time'])
 
 ams_df = ams_df.set_index('time')
 
-ams_df  = ams_df.drop(['latitude', 'longitude', 'surface', 'step', 'number', 'valid_time'], axis = 1)
+ams_df = ams_df.drop(['latitude', 'longitude', 'surface', 'step', 'number', 'valid_time'], axis = 1)
 
 # this just moves temp to the right of the DF, easier for X / y split
 ams_df['temp'] = ams_df['t2m']
