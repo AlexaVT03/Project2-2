@@ -9,4 +9,5 @@ In case the model does not show up properly, run the notebook as follows:
 To run the GUI, simply run the Main.java file.
 
 Thank you for reading.
+
 -Group 12-
