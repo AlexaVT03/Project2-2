@@ -45,8 +45,12 @@ def process_data(dir : str) -> None:
             df_1.index = pd.DatetimeIndex(df_1.index)
 
             # create dummies for month and hour (will help models maybe)
-            df_1['month'] = df_1.index.month # new column with only month
-            df_1 = pd.get_dummies(df_1, columns = ['month']) # make dummies for month
+            df_1['month'] = df_1.index.month   # Extract month
+            df_1['day'] = df_1.index.day       # Extract day
+            df_1['hour'] = df_1.index.hour     # Extract hour
+
+            # Create dummy variables for month, day, and hour
+            df_1 = pd.get_dummies(df_1, columns=['month', 'day', 'hour'], drop_first=True)
 
             # finalize processing
             yearly_df_1.append(df_1) # append df to yearly df list
@@ -187,8 +191,8 @@ def process_data_5(dir : str, csv_name : str) -> None:
     print("SUCCESFULLY MERGED DATA")
     print(f"FINAL CSV FILE SAVED TO: {save_path}")
 
-#process_data('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/train_set')
-#process_data_2('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/train_set')
-#process_data_3('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/train_set', 'processed_data.csv')
-process_data_4('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/new_train')
+process_data('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/train_set')
+process_data_2('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/train_set')
+process_data_3('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/train_set', 'processed_data.csv')
+#process_data_4('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/new_train')
 #process_data_5('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/train_set', 'final.csv')
