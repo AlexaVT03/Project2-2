@@ -1,7 +1,9 @@
 import atexit
 import os
 from flask import Flask, request, jsonify
-from dummy_model import predict_temp
+#from dummy_model import predict_temp
+
+from SARIMAX.arima import predict_temp
 
 app = Flask(__name__)
 
@@ -23,9 +25,13 @@ def predict_temperature():  # Changed function name here
     if not all([latitude, longitude, date]):
         return jsonify({"error": "Missing parameters! Please provide latitude, longitude, and date."}), 400
 
-    # Predict temperature
-    temperature = predict_temp(latitude=float(latitude), longitude=float(longitude), date=date)
-    return jsonify({"prediction": temperature})
+    #Predict temperature
+    #longitude latitude
+    #temperature = predict_temp(latitude=float(latitude), longitude=float(longitude), date=date)
+    
+    #location like: 'ams', 'middelburg', 'hertogenbosch', 'maastricht', 'utrecht', 'hague', 'arnhem', 'lelystad', 'zwolle', 'leeuwarden', 'assen', 'groningen'
+    temperature_pred, temperature_actual = predict_temp(date=date, location='ams')
+    return jsonify({"prediction": temperature_pred, "actual": temperature_actual})
 
 @app.route('/shutdown', methods=['POST']) # Used to shut down the server so the port is not busy
 def shutdown():

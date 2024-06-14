@@ -1,31 +1,69 @@
 package org.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
-public class OutputScreen {
+public class OutputScreen implements ActionListener {
     private JFrame frame;
-    private JLabel title, temperature;
+    private JLabel title, temperaturePredicition, temperatureActual;
+    private JButton backButton;
 
-    public OutputScreen(String answerString) {
+    public OutputScreen(String answerString, String date) {
         frame = new JFrame("Weather Predictor");
-        frame.setSize(550, 550);
+        frame.setSize(500, 200);
         frame.setLayout(null);
 
-        title = new JLabel("Weather stats at [user input]");
+        title = new JLabel("Weather stats at "+date);
         title.setSize(300, 40);
         title.setLocation(280, 20);
         frame.add(title);
-        // Get the temperature value from the JSON answer, this needs to be done better as now it just looks for : and }
-        String temperatureValue = answerString.substring(answerString.indexOf(":") + 1, answerString.indexOf("}")).trim();
-        temperature = new JLabel("Temperature: ......");
+
+        //get actual from answerString
+        int indexActual = answerString.indexOf("\"actual\":") + 9;
+        int endIndexActual = answerString.indexOf(",", indexActual);
+        String temperatureValueActual = answerString.substring(indexActual, endIndexActual).trim();
+
+        //get prediction from answerString
+        int indexPrediction = answerString.indexOf("\"prediction\":") + 13;
+        int endIndexPrediction = answerString.indexOf("}", indexPrediction);
+        String temperatureValuePrediction = answerString.substring(indexPrediction, endIndexPrediction).trim();
+
+
+        temperaturePredicition = new JLabel("Temperature: ......");
         // Set the value for the temperature label
-        temperature.setText("Temperature: " + temperatureValue);
-        temperature.setSize(150, 30);
-        temperature.setLocation(20, 60);
-        frame.add(temperature);
+        temperaturePredicition.setText("Temperature prediction value: " + temperatureValuePrediction);
+        temperaturePredicition.setSize(300, 30);
+        temperaturePredicition.setLocation(20, 60);
+        frame.add(temperaturePredicition);
+
+        temperatureActual = new JLabel("Temperature: ......");
+        // Set the value for the temperature label
+        temperatureActual.setText("Temperature actual value: " + temperatureValueActual);
+        temperatureActual.setSize(300, 30);
+        temperatureActual.setLocation(20, 90);
+        frame.add(temperatureActual);
+
+
+        //back button 
+        backButton = new JButton("Try again!");
+        backButton.setSize(150, 30);
+        backButton.setLocation(175, 130);
+        backButton.addActionListener(this);
+        
+        frame.add(backButton);
+
 
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
+
     }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            frame.dispose();
+            InputScreen inputScreen = new InputScreen();
+        }
+    
 }
