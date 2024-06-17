@@ -11,6 +11,8 @@ public class InputScreen implements ActionListener {
     private JLabel label1, label2, label3;
     private JTextField day, month, year;
     private JButton computeButton;
+    private String selectedModel, selectedLocation;
+
     public InputScreen() {
         frame = new JFrame("Weather Predictor");
         frame.setSize(500, 250);
@@ -41,14 +43,14 @@ public class InputScreen implements ActionListener {
         year.setLocation(275, 70);
         frame.add(year);
 
-        label3 = new JLabel("Please pick a model to predict:");
+        label3 = new JLabel("Please pick a model and location to predict:");
         label3.setSize(500, 30);
         label3.setLocation(20, 100);
         frame.add(label3);
 
 
         //Options
-        String[] models = {"Linear Regression"};
+        String[] models = {"SARIMAX", "Other"};
         //Drop down menu
         JComboBox<String> dropDownMenu = new JComboBox<>(models);
 
@@ -57,14 +59,34 @@ public class InputScreen implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                  // Get string dropdown 
-                String selectedModel = (String) dropDownMenu.getSelectedItem();
+                selectedModel = (String) dropDownMenu.getSelectedItem();
                 label3.setText("Selected model: "+selectedModel);
             }
             
         });
         dropDownMenu.setSize(150, 30);
-        dropDownMenu.setLocation(175, 130);
+        dropDownMenu.setLocation(75, 130);
         frame.add(dropDownMenu);
+
+        //Options
+        String[] locations = {"ams", "Other"};
+        //Drop down menu
+        JComboBox<String> dropDownMenu2 = new JComboBox<>(locations);
+        
+        dropDownMenu2.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 // Get string dropdown 
+            
+                selectedLocation = (String) dropDownMenu2.getSelectedItem();
+                label3.setText("Selected location: "+selectedLocation);
+            }
+            
+        });
+        dropDownMenu2.setSize(150, 30);
+        dropDownMenu2.setLocation(275, 130);
+        frame.add(dropDownMenu2);
 
         computeButton = new JButton("Predict!");
         computeButton.setSize(150, 30);
@@ -87,14 +109,11 @@ public class InputScreen implements ActionListener {
         String month = this.month.getText();
         String year = this.year.getText();
         String date = year + "-" + month + "-" + day;
-        // Get the location
-        int latitude = 20;
-        int longitude = 20;
         // Put those in the HashMap
         HashMap<String, String> params = new HashMap<>();
         params.put("date", date);
-        params.put("latitude", String.valueOf(latitude));
-        params.put("longitude", String.valueOf(longitude));
+        params.put("location", String.valueOf(selectedLocation));
+        params.put("model", String.valueOf(selectedModel));
         // Make the request to the API
         String answer = API_requester.sendRequestToAPI("predict_temp", "GET", params);
         frame.dispose();

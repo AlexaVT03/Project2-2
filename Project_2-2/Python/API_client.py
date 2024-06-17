@@ -3,7 +3,8 @@ import os
 from flask import Flask, request, jsonify
 #from dummy_model import predict_temp
 
-from SARIMAX.arima import predict_temp
+from SARIMAX.arima import predict_temp_sarimax
+#import other functions of other models 
 
 app = Flask(__name__)
 
@@ -18,19 +19,18 @@ def greet():
 @app.route('/predict_temp', methods=['GET'])
 def predict_temperature():  # Changed function name here
     # Retrieve parameters from the query string
-    latitude = request.args.get('latitude')
-    longitude = request.args.get('longitude')
+    location = request.args.get('location')
+    model = request.args.get('model')
     date = request.args.get('date')
     # Check if the parameters are not null
-    if not all([latitude, longitude, date]):
-        return jsonify({"error": "Missing parameters! Please provide latitude, longitude, and date."}), 400
-
-    #Predict temperature
-    #longitude latitude
-    #temperature = predict_temp(latitude=float(latitude), longitude=float(longitude), date=date)
+    if not all([location, model, date]):
+        return jsonify({"error": "Missing parameters! Please provide location, model, and date."}), 400
+    
+    if model == "SARIMAX":
+        temperature_pred, temperature_actual = predict_temp_sarimax(date=date, location=location)
     
     #location like: 'ams', 'middelburg', 'hertogenbosch', 'maastricht', 'utrecht', 'hague', 'arnhem', 'lelystad', 'zwolle', 'leeuwarden', 'assen', 'groningen'
-    temperature_pred, temperature_actual = predict_temp(date=date, location='ams')
+    # temperature_pred, temperature_actual = predict_temp(date=date, location=location)
     return jsonify({"prediction": temperature_pred, "actual": temperature_actual})
 
 @app.route('/shutdown', methods=['POST']) # Used to shut down the server so the port is not busy

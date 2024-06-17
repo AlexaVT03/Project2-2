@@ -90,7 +90,7 @@ for idx, i in enumerate(special):
     # plt.gca().xaxis.set_major_locator(plt.MaxNLocator(10))  # Adjust the number of ticks as needed
     
     #now only amsterdam, soon to be more locations
-    def predict_temp(date, location):
+    def predict_temp_sarimax(date, location):
         #date is in form of "2024-01-01 00:00:00"
         date = date + ' 12:00:00'
         if location in predictions_dict and date in predictions_dict[location].index:
