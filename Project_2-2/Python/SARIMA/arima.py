@@ -15,7 +15,7 @@ import pickle
 
 
 #loading arima model
-model_path = '/Users/jesselemeer/Documents/GitHub/Project2-2/Project_2-2/Python/SARIMAX/models/'
+model_path = '/Users/jesselemeer/Documents/GitHub/Project2-2/Project_2-2/Python/SARIMA/models/'
 
 
 
@@ -72,7 +72,7 @@ forecast_dict = {}
     # plt.gca().xaxis.set_major_locator(plt.MaxNLocator(10))  # Adjust the number of ticks as needed
     
     #now only amsterdam, soon to be more locations
-def predict_temp_sarimax(date, location):
+def predict_temp_sarima(date, location):
         # Load the model from file
         with open(os.path.join(model_path+location, 'sarimax_model.pkl'), 'rb') as f:
             model = pickle.load(f)

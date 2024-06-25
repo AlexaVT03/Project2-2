@@ -2,7 +2,7 @@ import atexit
 import os
 from flask import Flask, request, jsonify
 
-from SARIMAX.arima import predict_temp_sarimax
+from SARIMA.arima import predict_temp_sarima
 
 app = Flask(__name__)
 
@@ -34,8 +34,8 @@ def predict_temperature():  # Changed function name here
             actual = true_values_dict[location].loc[date]
         temperature_pred, temperature_actual = prediction, actual
         
-    elif model == "SARIMAX":
-        temperature_pred, temperature_actual = predict_temp_sarimax(date=date, location=location)
+    elif model == "SARIMA":
+        temperature_pred, temperature_actual = predict_temp_sarima(date=date, location=location)
     else: 
         return jsonify({"error": "Invalid model! Please provide either 'LSTM' or 'SARIMAX'."}), 400
     
