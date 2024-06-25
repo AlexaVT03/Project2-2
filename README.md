@@ -6,6 +6,8 @@ In case the model does not show up properly, run the notebook as follows:
 2. Replace the absolute file path at the top of the relevant notebook with your own absolute file path. Make sure to replace all '\' with '/'.
 3. Run the full notebook. Note that this will take some time, with some models taking longer than others. Please be patient and do not interrupt the runtime.
 
+There is a pre processing script under "NL_DATA" which you NEED to run before using any notebooks. Please find the instructions to this script in "NL_DATA/README.txt"
+
 To run the GUI, simply run the Main.java file.
 
 We are only predicting dates from 05/05/2024 up to and including 07/05/2024. Other dates will not work. 
