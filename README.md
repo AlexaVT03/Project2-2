@@ -19,6 +19,8 @@
 ### For our two most "interesting" models, namely the SARIMA and the LSTM, you can check forecasts up to 72 hours in the future using our GUI.
 ## In the "gui_forecast" directory, you will find the Java files you need to run our GUI. Please run the "GUI.java" file, and experiment with our forecasts.
 
+# IMPORTANT
+### You will notice that this repository contains many other Java-related files. These files are supposed to establish a Java-Python connection, and has a GUI implementation which uses Python to make forecasts on the spot. The reason why we are not mentioning it earlier, and the reason for which we do not recommend using this GUI, is that it creates many issues for some computers, and works well on others. Our "gui_forecast" is a GUI which uses only Java, and simply reads from arrays to present its forecasts.
 Thank you for reading.
 
 -Group 12-
