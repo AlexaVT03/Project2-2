@@ -3,6 +3,11 @@ import pandas as pd
 import cfgrib
 import xarray as xr
 
+### REPLACE WITH OWN PATH TO .grib DIRECTORIES ###
+path1 = ""
+path2 = ""
+##################################################
+
 # warning this code isn't amazingly well optimized, you need more than 8gb ram to run it, otherwise it crashes. 16gb is really tight too
 
 final_df = pd.DataFrame()
@@ -191,8 +196,9 @@ def process_data_5(dir : str, csv_name : str) -> None:
     print("SUCCESFULLY MERGED DATA")
     print(f"FINAL CSV FILE SAVED TO: {save_path}")
 
-process_data('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/train_set')
-process_data_2('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/train_set')
-process_data_3('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/train_set', 'processed_data.csv')
-#process_data_4('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/new_train')
-#process_data_5('/Users/lpaggen/Documents/DACS COURSES/Project2-2/Project_2-2/NL_data/train_set', 'final.csv')
+# you may want to run these one at a time, the RAM usage is very high
+process_data(path1)
+process_data_2(path1)
+process_data_3(path1, 'processed_data.csv')
+process_data_4(path2)
+process_data_5(path1, 'big_data.csv')
