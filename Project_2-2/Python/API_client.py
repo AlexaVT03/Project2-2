@@ -2,7 +2,7 @@ import atexit
 import os
 from flask import Flask, request, jsonify
 
-from SARIMA.arima import predict_temp_sarima
+# from SARIMA.arima import predict_temp_sarima
 
 app = Flask(__name__)
 
@@ -22,7 +22,12 @@ def predict_temperature():  # Changed function name here
     date = request.args.get('date')
     # Check if the parameters are not null
     if not all([location, model, date]):
-        return jsonify({"error": "Missing parameters! Please provide location, model, and date."}), 400
+        if not location:
+            return jsonify({"error": "Missing location parameter! Please provide location."}), 400
+        if not model:
+            return jsonify({"error": "Missing model parameter! Please provide model."}), 400
+        if not date:
+            return jsonify({"error": "Missing date parameter! Please provide date."}), 400
     
     if model == "LSTM":
         from LSTMdict import forecast_dict, true_values_dict
@@ -34,8 +39,8 @@ def predict_temperature():  # Changed function name here
             actual = true_values_dict[location].loc[date]
         temperature_pred, temperature_actual = prediction, actual
         
-    elif model == "SARIMA":
-        temperature_pred, temperature_actual = predict_temp_sarima(date=date, location=location)
+    # elif model == "SARIMA":
+    #     temperature_pred, temperature_actual = predict_temp_sarima(date=date, location=location)
     else: 
         return jsonify({"error": "Invalid model! Please provide either 'LSTM' or 'SARIMAX'."}), 400
     
