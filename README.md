@@ -8,6 +8,14 @@ In case the model does not show up properly, run the notebook as follows:
 
 To run the GUI, simply run the Main.java file.
 
+We are only predicting dates from 05/05/2024 up to and including 07/05/2024. Other dates will not work. 
+
+Predictions for LSTM can be shown without any changes to the code, but for SARIMAX this works different as it predicts on the spot. To make this work, you can follow the steps below.
+1. Unzip the 6 zip files found in the models folder in the SARIMAX folder which contain the models for two locations for each zip.
+1. Change the model_path in arima.py found in the SARIMAX folder to your path for the models folder found in SARIMAX.
+2. Unzip the grib_data_forecast.zip found in the forecast_set folder which is in the NL_data folder. 
+2. Change the path to the forecast.csv received from step 2. 
+
 Thank you for reading.
 
 -Group 12-

@@ -15,13 +15,9 @@ import pickle
 
 
 #loading arima model
-model_path = '/Users/jesselemeer/Documents/GitHub/Project2-2/Project_2-2/Python/SARIMAX/my_dir/models/ams'
+model_path = '/Users/jesselemeer/Documents/GitHub/Project2-2/Project_2-2/Python/SARIMAX/models/'
 
-# Load the model from file
-with open(os.path.join(model_path, 'sarimax_model.pkl'), 'rb') as f:
-    model = pickle.load(f)
 
-print(model.summary())
 
 #forecast dataset
 forecast_df = pd.read_csv('/Users/jesselemeer/Documents/GitHub/Project2-2/Project_2-2/NL_data/forecast_set/forecast.csv') # forecast purposes, let's see
@@ -62,21 +58,7 @@ forecast_horizon = 72
 predictions_dict = {} # store model predictions, according to the same keys as before, 'ams', etc ...
 forecast_dict = {} 
 
-special = ['ams']
-for idx, i in enumerate(special):
-    
-    real_test = dataframes_forecast[idx]['t2m'][:-1].values
 
-    timeindex = dataframes_forecast[idx]['time'][:-1]
-
-    forecasts = model.forecast(steps=forecast_horizon)
-    forecast_dict[i] = forecasts
-    
-    # Store predictions and actual values in a dictionary
-    predictions_dict[i] = pd.Series(forecasts, index=timeindex)
-    actual_values = pd.Series(real_test, index=timeindex)
-
-    plot_title = str(f"Weather forecast for {i}")
     
 
     # plt.figure(figsize=(12, 6))
@@ -90,7 +72,30 @@ for idx, i in enumerate(special):
     # plt.gca().xaxis.set_major_locator(plt.MaxNLocator(10))  # Adjust the number of ticks as needed
     
     #now only amsterdam, soon to be more locations
-    def predict_temp_sarimax(date, location):
+def predict_temp_sarimax(date, location):
+        # Load the model from file
+        with open(os.path.join(model_path+location, 'sarimax_model.pkl'), 'rb') as f:
+            model = pickle.load(f)
+
+
+        special = [location]
+        
+        
+        for idx, i in enumerate(special):
+        
+            real_test = dataframes_forecast[idx]['t2m'][:-1].values
+
+            timeindex = dataframes_forecast[idx]['time'][:-1]
+
+            forecasts = model.forecast(steps=forecast_horizon)
+            forecast_dict[i] = forecasts
+            
+            # Store predictions and actual values in a dictionary
+            predictions_dict[i] = pd.Series(forecasts, index=timeindex)
+            # print(predictions_dict)
+            actual_values = pd.Series(real_test, index=timeindex)
+
+            plot_title = str(f"Weather forecast for {i}")
         #date is in form of "2024-01-01 00:00:00"
         date = date + ' 12:00:00'
         if location in predictions_dict and date in predictions_dict[location].index:
@@ -100,5 +105,8 @@ for idx, i in enumerate(special):
         else:
             return None, None
         
-        
-    
+#testing
+# pred, true = predict_temp_sarimax("2024-05-05","ams")
+
+# print(type(pred))
+# print(type(true))

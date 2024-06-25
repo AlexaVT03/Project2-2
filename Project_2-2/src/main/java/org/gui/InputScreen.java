@@ -50,7 +50,7 @@ public class InputScreen implements ActionListener {
 
 
         //Options
-        String[] models = {"SARIMAX", "Other"};
+        String[] models = {"SARIMAX", "LSTM"};
         //Drop down menu
         JComboBox<String> dropDownMenu = new JComboBox<>(models);
 
@@ -69,7 +69,7 @@ public class InputScreen implements ActionListener {
         frame.add(dropDownMenu);
 
         //Options
-        String[] locations = {"ams", "Other"};
+        String[] locations = {"ams", "middelburg", "hertogenbosch", "maastricht", "utrecht", "hague", "arnhem", "lelystad", "zwolle", "leeuwarden", "assen", "groningen"};
         //Drop down menu
         JComboBox<String> dropDownMenu2 = new JComboBox<>(locations);
         
@@ -113,6 +113,8 @@ public class InputScreen implements ActionListener {
         HashMap<String, String> params = new HashMap<>();
         params.put("date", date);
         params.put("location", String.valueOf(selectedLocation));
+
+        
         params.put("model", String.valueOf(selectedModel));
         // Make the request to the API
         String answer = API_requester.sendRequestToAPI("predict_temp", "GET", params);

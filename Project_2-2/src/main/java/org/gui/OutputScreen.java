@@ -34,14 +34,14 @@ public class OutputScreen implements ActionListener {
         temperaturePredicition = new JLabel("Temperature: ......");
         // Set the value for the temperature label
         temperaturePredicition.setText("Temperature prediction value: " + temperatureValuePrediction);
-        temperaturePredicition.setSize(300, 30);
+        temperaturePredicition.setSize(450, 30);
         temperaturePredicition.setLocation(20, 60);
         frame.add(temperaturePredicition);
 
         temperatureActual = new JLabel("Temperature: ......");
         // Set the value for the temperature label
         temperatureActual.setText("Temperature actual value: " + temperatureValueActual);
-        temperatureActual.setSize(300, 30);
+        temperatureActual.setSize(450, 30);
         temperatureActual.setLocation(20, 90);
         frame.add(temperatureActual);
 
