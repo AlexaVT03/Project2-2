@@ -1,9 +1,9 @@
 # Welcome to our project 2-2 submission. 
 
 # In the "Python" directory, you can find all the notebooks and scripts we used to:
-### 1) fetch the data from the CDSAPI ###
-### 2) pre-process the data ### 
-### 3) train our models ### 
+1) fetch the data from the CDSAPI
+2) pre-process the data
+3) train our models
 
 ###  If you want to check the code behind any of those topics, please find them in the "Python" directory.
 
