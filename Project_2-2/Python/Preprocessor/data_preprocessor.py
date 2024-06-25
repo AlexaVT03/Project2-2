@@ -3,10 +3,10 @@ import pandas as pd
 import cfgrib
 import xarray as xr
 
-### REPLACE WITH OWN PATH TO .grib DIRECTORIES ###
+#### REPLACE WITH OWN PATH TO .grib DIRECTORIES ####
 path1 = ""
 path2 = ""
-##################################################
+###################################################
 
 # warning this code isn't amazingly well optimized, you need more than 8gb ram to run it, otherwise it crashes. 16gb is really tight too
 
