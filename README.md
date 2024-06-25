@@ -1,22 +1,21 @@
-To view a model's code and how it functions, please open the appropriate model's .ipynb file. 
-There, a notebook will show all the previously executed code, including plots, results, print statements and terminal outputs.
+# Welcome to our project 2-2 submission. 
 
-In case the model does not show up properly, run the notebook as follows:
-1. Select an appropriate python runtime.
-2. Replace the absolute file path at the top of the relevant notebook with your own absolute file path. Make sure to replace all '\' with '/'.
-3. Run the full notebook. Note that this will take some time, with some models taking longer than others. Please be patient and do not interrupt the runtime.
+# In the "Python" directory, you can find all the notebooks and scripts we used to:
+### 1) fetch the data from the CDSAPI ###
+### 2) pre-process the data ### 
+### 3) train our models ### 
 
-There is a pre processing script under "NL_DATA" which you NEED to run before using any notebooks. Please find the instructions to this script in "NL_DATA/README.txt"
+###  If you want to check the code behind any of those topics, please find them in the "Python" directory.
 
-To run the GUI, simply run the Main.java file.
+# In the "NL_data" directory, you can find all the files we used for this project. You need to follow the following steps to get the files in .csv format:
+1) locate the "data_set_1" and "data_set_2" directories
+2) unzip the archives you find in these directories, and DO NOT rename any file, DO NOT move any file to another location
+3) run the "data_preprocessor.py" script, and CHANGE THE "path1" and "path2" variables in this script to the "data_set_1" and "data_set_2" paths
+4) let the script run, it takes a while (20 minutes)
 
-We are only predicting dates from 05/05/2024 up to and including 07/05/2024. Other dates will not work. 
-
-Predictions for LSTM can be shown without any changes to the code, but for SARIMAX this works different as it predicts on the spot. To make this work, you can follow the steps below.
-1. Unzip the 6 zip files found in the models folder in the SARIMAX folder which contain the models for two locations for each zip.
-1. Change the model_path in arima.py found in the SARIMAX folder to your path for the models folder found in SARIMAX.
-2. Unzip the grib_data_forecast.zip found in the forecast_set folder which is in the NL_data folder. 
-2. Change the path to the forecast.csv received from step 2. 
+# CHECKING OUR FORECASTS USING OUR GUI
+### For our two most "interesting" models, namely the SARIMA and the LSTM, you can check forecasts up to 72 hours in the future using our GUI.
+## In the "gui_forecast" directory, you will find the Java files you need to run our GUI. Please run the "GUI.java" file, and experiment with our forecasts.
 
 Thank you for reading.
 
