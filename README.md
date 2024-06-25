@@ -5,6 +5,8 @@
 2) pre-process the data
 3) train our models
 
+## In the LSTM/models and SARIMA/models, you will find the models we trained. If you want to use them in our notebooks, please unzip them in the "models" directory of each model. 
+
 ###  If you want to check the code behind any of those topics, please find them in the "Python" directory.
 
 # In the "NL_data" directory, you can find all the files we used for this project. You need to follow the following steps to get the files in .csv format:
