@@ -21,6 +21,9 @@
 
 # IMPORTANT
 ### You will notice that this repository contains many other Java-related files. These files are supposed to establish a Java-Python connection, and has a GUI implementation which uses Python to make forecasts on the spot. The reason why we are not mentioning it earlier, and the reason for which we do not recommend using this GUI, is that it creates many issues for some computers, and works well on others. Our "gui_forecast" is a GUI which uses only Java, and simply reads from arrays to present its forecasts.
+
+### If you do want to try this GUI, please run the "Main.java" file in src/.. 
+
 Thank you for reading.
 
 -Group 12-
